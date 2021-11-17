@@ -1,17 +1,17 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Account from "../screens/Account/Account";
+import Home from "../screens/Home";
 
 const Stack = createStackNavigator();
 
-export default function AccountStack() {
+export default function HomeStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="favorites"
-        component={Account}
-        options={{ title: "Mi cuenta" }}
+        name="restaurants"
+        component={Home}
+        options={{ title: "Home Stack" }}
       ></Stack.Screen>
     </Stack.Navigator>
   );

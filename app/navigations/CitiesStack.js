@@ -1,17 +1,17 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Restaurants from "../screens/Restaurants";
+import Cities from "../screens/Cities";
 
 const Stack = createStackNavigator();
 
-export default function RestaurantStack() {
+export default function CitiesStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="restaurants"
-        component={Restaurants}
-        options={{ title: "Restaurantes" }}
+        name="cities"
+        component={Cities}
+        options={{ title: "Lista de ciudades" }}
       ></Stack.Screen>
     </Stack.Navigator>
   );

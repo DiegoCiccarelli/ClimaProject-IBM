@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "5-tenedores",
-    "slug": "5-tenedores",
+    "name": "ClimaProject-IBM",
+    "slug": "ClimaProject-IBM",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },

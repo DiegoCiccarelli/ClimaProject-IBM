@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export default function UserLoger() {
+export default function Home() {
   return (
     <View>
-      <Text> UserLoger..</Text>
+      <Text>Home contenido</Text>
     </View>
   );
 }

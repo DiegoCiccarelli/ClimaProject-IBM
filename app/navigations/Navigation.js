@@ -3,11 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
 
-import RestaurantStack from "./RestaurantsStack";
-import FavoritesStack from "./FavoritesStack";
-import TopRestaurantsStack from "./TopRestaurantsStack";
-import SearchStack from "./SearchStack";
-import AccountStack from "./AccountStack";
+import HomeStack from "./HomeStack";
+import CitiesStack from "./CitiesStack";
+import AboutUsStack from "./AboutUsStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +13,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="restaurants"
+        initialRouteName="home"
         tabBarOptions={{
           inactiveTintColor: "#646464",
           activeTintColor: "#00a680",
@@ -25,29 +23,19 @@ export default function Navigation() {
         })}
       >
         <Tab.Screen
-          name="restaurants"
-          component={RestaurantStack}
-          options={{ title: "Restaurantes" }}
+          name="home"
+          component={HomeStack}
+          options={{ title: "Home" }}
         />
         <Tab.Screen
-          name="favorites"
-          component={FavoritesStack}
-          options={{ title: "Favoritos" }}
+          name="cities"
+          component={CitiesStack}
+          options={{ title: "Ciudades" }}
         />
         <Tab.Screen
-          name="top-restaurants"
-          component={TopRestaurantsStack}
-          options={{ title: "Top 5" }}
-        />
-        <Tab.Screen
-          name="search"
-          component={SearchStack}
-          options={{ title: "Buscar" }}
-        />
-        <Tab.Screen
-          name="account"
-          component={AccountStack}
-          options={{ title: "Cuentasss" }}
+          name="about-us"
+          component={AboutUsStack}
+          options={{ title: "Nosotros" }}
         />
       </Tab.Navigator>
     </NavigationContainer>
@@ -57,25 +45,19 @@ export default function Navigation() {
 function screenOptions(route, color) {
   let iconName;
   switch (route.name) {
-    case "restaurants":
-      iconName = "compass-outline";
-      break;
-    case "favorites":
-      iconName = "heart-outline";
-      break;
-    case "top-restaurants":
-      iconName = "star-outline";
-      break;
-    case "search":
-      iconName = "magnify";
-      break;
-    case "account":
+    case "home":
       iconName = "home-outline";
+      break;
+    case "cities":
+      iconName = "city";
+      break;
+    case "about-us":
+      iconName = "account-multiple-outline";
       break;
     default:
       break;
   }
   return (
-    <Icon type="material-community" name={iconName} size={22} color={color} />
+    <Icon type="material-community" name={iconName} size={40} color={color} />
   );
 }
