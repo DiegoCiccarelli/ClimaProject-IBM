@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Cities from "../screens/Cities";
+import Cities from "../screens/Cities/Cities";
 
 const Stack = createStackNavigator();
 
