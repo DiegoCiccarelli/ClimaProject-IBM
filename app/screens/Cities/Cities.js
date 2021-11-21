@@ -2,7 +2,8 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Icon } from "react-native-elements";
 
-export default function Cities() {
+export default function Cities(props) {
+  const { navigation } = props;
   return (
     <View style={styles.viewBody}>
       <Text>Ciudades...</Text>
@@ -12,6 +13,7 @@ export default function Cities() {
         name="plus"
         color="#00a680"
         containerStyle={styles.btnContainer}
+        onPress={() => navigation.navigate("add-citie")}
       />
     </View>
   );
