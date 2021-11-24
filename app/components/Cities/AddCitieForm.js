@@ -88,16 +88,18 @@ function Map(props) {
 const styles = StyleSheet.create({
   scrollView: {
     height: "100%",
+    backgroundColor: "#fff",
   },
   viewForm: {
     marginLeft: 10,
     marginRight: 10,
+    marginTop: 20,
   },
   input: {
     marginBottom: 10,
   },
   btnAddCity: {
-    backgroundColor: "#00a680",
+    backgroundColor: "#016278",
     margin: 20,
   },
 });

@@ -11,7 +11,7 @@ export default function Cities(props) {
         reverse
         type="material-community"
         name="plus"
-        color="#00a680"
+        color="#016278"
         containerStyle={styles.btnContainer}
         onPress={() => navigation.navigate("add-citie")}
       />
