@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Icon, Avatar, Image, Input, Button } from "react-native-elements";
 import Modal from "../Modal";
+import * as Location from "expo-location";
 
 export default function AddCitieForm(props) {
   const { toastRef, setIsLoading, navigation } = props;
@@ -67,6 +68,16 @@ function FormAdd(props) {
 
 function Map(props) {
   const { isVisibleMap, setIsVisibleMap } = props;
+
+  useEffect(() => {
+    (async () => {
+      const resultPermissions = await Permissions.askAsync(
+        Permissions.LOCATION
+      );
+      console.log(resultPermissions);
+    })();
+  }, []);
+
   return (
     <Modal isVisible={isVisibleMap} setIsVisible={setIsVisibleMap}>
       <Text>Mapa</Text>
