@@ -22,10 +22,16 @@ export default function AddCitieForm(props) {
   const [locationCity, setLocationCity] = useState(null);
 
   const addCity = () => {
-    console.log("ok");
-    console.log("cityName: " + cityName);
-    console.log("cityAddress: " + cityAddress);
-    console.log(locationCity);
+    if (!cityName || !cityAddress) {
+      toastRef.current.show("Todos los campos del formulario son obligatorios");
+    } else if (!locationCity) {
+      toastRef.current.show("Tienes que localizar la ubicacion en el mapa");
+    } else {
+      console.log("ok");
+      console.log("cityName: " + cityName);
+      console.log("cityAddress: " + cityAddress);
+      console.log(locationCity);
+    }
   };
 
   return (
@@ -89,7 +95,6 @@ function Map(props) {
       const statusPermissions = resultPermissions.status;
       if (statusPermissions === "granted") {
         const loc = await Location.getCurrentPositionAsync({});
-        console.log(loc);
         setLocation({
           latitude: loc.coords.latitude,
           longitude: loc.coords.longitude,
