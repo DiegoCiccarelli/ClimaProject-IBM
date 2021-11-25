@@ -19,11 +19,13 @@ export default function AddCitieForm(props) {
   const [cityName, setCityName] = useState("");
   const [cityAddress, setCityAddress] = useState("");
   const [isVisibleMap, setIsVisibleMap] = useState(false);
+  const [locationCity, setLocationCity] = useState(null);
 
   const addCity = () => {
     console.log("ok");
     console.log("cityName: " + cityName);
     console.log("cityAddress: " + cityAddress);
+    console.log(locationCity);
   };
 
   return (
@@ -32,19 +34,25 @@ export default function AddCitieForm(props) {
         setCityName={setCityName}
         setCityAddress={setCityAddress}
         setIsVisibleMap={setIsVisibleMap}
+        locationCity={locationCity}
       />
       <Button
         title="Agregar Ciudad"
         onPress={addCity}
         buttonStyle={styles.btnAddCity}
       />
-      <Map isVisibleMap={isVisibleMap} setIsVisibleMap={setIsVisibleMap} />
+      <Map
+        isVisibleMap={isVisibleMap}
+        setIsVisibleMap={setIsVisibleMap}
+        setLocationCity={setLocationCity}
+        toastRef={toastRef}
+      />
     </ScrollView>
   );
 }
 
 function FormAdd(props) {
-  const { setCityName, setCityAddress, setIsVisibleMap } = props;
+  const { setCityName, setCityAddress, setIsVisibleMap, locationCity } = props;
 
   return (
     <View style={styles.viewForm}>
@@ -60,7 +68,7 @@ function FormAdd(props) {
         rightIcon={{
           type: "material-community",
           name: "google-maps",
-          color: "#c2c2c2",
+          color: locationCity ? "#016278" : "#c2c2c2",
           onPress: () => setIsVisibleMap(true),
         }}
       />
@@ -69,7 +77,7 @@ function FormAdd(props) {
 }
 
 function Map(props) {
-  const { isVisibleMap, setIsVisibleMap } = props;
+  const { isVisibleMap, setIsVisibleMap, setLocationCity, toastRef } = props;
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
@@ -97,6 +105,12 @@ function Map(props) {
     })();
   }, []);
 
+  const confirmLocation = () => {
+    setLocationCity(location);
+    toastRef.current.show("Localizacion guardada correctamente");
+    setIsVisibleMap(false);
+  };
+
   return (
     <Modal isVisible={isVisibleMap} setIsVisible={setIsVisibleMap}>
       <View>
@@ -116,6 +130,20 @@ function Map(props) {
             ></MapView.Marker>
           </MapView>
         )}
+        <View style={styles.viewMapBtn}>
+          <Button
+            title="Guardar Ubicacion"
+            containerStyle={styles.viewMapBtnContainerSave}
+            buttonStyle={styles.viewMapBtnSave}
+            onPress={confirmLocation}
+          />
+          <Button
+            title="Cancelar Ubicacion"
+            containerStyle={styles.viewMapBtnContainerCancel}
+            buttonStyle={styles.viewMapBtnCancel}
+            onPress={() => setIsVisibleMap(false)}
+          />
+        </View>
       </View>
     </Modal>
   );
@@ -141,5 +169,22 @@ const styles = StyleSheet.create({
   mapStyle: {
     width: "100%",
     height: 550,
+  },
+  viewMapBtn: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 10,
+  },
+  viewMapBtnContainerCancel: {
+    paddingLeft: 5,
+  },
+  viewMapBtnCancel: {
+    backgroundColor: "#a60d0d",
+  },
+  viewMapBtnContainerSave: {
+    paddingRight: 5,
+  },
+  viewMapBtnSave: {
+    backgroundColor: "#016278",
   },
 });
