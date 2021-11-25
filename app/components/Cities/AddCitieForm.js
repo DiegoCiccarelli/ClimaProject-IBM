@@ -8,9 +8,10 @@ import {
   Dimensions,
 } from "react-native";
 import { Icon, Avatar, Image, Input, Button } from "react-native-elements";
-import Modal from "../Modal";
 import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
+import MapView from "react-native-maps";
+import Modal from "../Modal";
 
 export default function AddCitieForm(props) {
   const { toastRef, setIsLoading, navigation } = props;
@@ -69,26 +70,53 @@ function FormAdd(props) {
 
 function Map(props) {
   const { isVisibleMap, setIsVisibleMap } = props;
+  const [location, setLocation] = useState(null);
 
   useEffect(() => {
     (async () => {
-      console.log("LOCACION DE MAPA");
       const resultPermissions = await Permissions.askAsync(
         Permissions.LOCATION
       );
       console.log(resultPermissions);
-      // if (resultPermissions.permissions.location.status === "granted") {
-      //   console.log("ACCESO CONCEDIDO");
-      // } else {
-      //   throw new Error("Location permission not granted");
-      // }
-      // console.log("FINALIZA FUNCIN");
+      const statusPermissions = resultPermissions.status;
+      if (statusPermissions === "granted") {
+        const loc = await Location.getCurrentPositionAsync({});
+        console.log(loc);
+        setLocation({
+          latitude: loc.coords.latitude,
+          longitude: loc.coords.longitude,
+          latitudeDelta: 0.001,
+          longitudeDelta: 0.001,
+        });
+      } else {
+        toastRef.current.show(
+          "Tienes que aceptar los permisos de localizacion",
+          3000
+        );
+      }
     })();
   }, []);
 
   return (
     <Modal isVisible={isVisibleMap} setIsVisible={setIsVisibleMap}>
-      <Text>Mapa</Text>
+      <View>
+        {location && (
+          <MapView
+            style={styles.mapStyle}
+            initialRegion={location}
+            showsUserLocation={true}
+            onRegionChange={(region) => setLocation(region)}
+          >
+            <MapView.Marker
+              coordinate={{
+                latitude: location.latitude,
+                longitude: location.longitude,
+              }}
+              draggable
+            ></MapView.Marker>
+          </MapView>
+        )}
+      </View>
     </Modal>
   );
 }
@@ -109,5 +137,9 @@ const styles = StyleSheet.create({
   btnAddCity: {
     backgroundColor: "#016278",
     margin: 20,
+  },
+  mapStyle: {
+    width: "100%",
+    height: 550,
   },
 });
