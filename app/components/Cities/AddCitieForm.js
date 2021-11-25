@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Icon, Avatar, Image, Input, Button } from "react-native-elements";
 import Modal from "../Modal";
+import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
 
 export default function AddCitieForm(props) {
@@ -36,7 +37,7 @@ export default function AddCitieForm(props) {
         onPress={addCity}
         buttonStyle={styles.btnAddCity}
       />
-      <Map isVisibleMap={isVisibleMap} setIsVisibleMap={setIsVisibleMap}></Map>
+      <Map isVisibleMap={isVisibleMap} setIsVisibleMap={setIsVisibleMap} />
     </ScrollView>
   );
 }
@@ -71,10 +72,17 @@ function Map(props) {
 
   useEffect(() => {
     (async () => {
+      console.log("LOCACION DE MAPA");
       const resultPermissions = await Permissions.askAsync(
         Permissions.LOCATION
       );
       console.log(resultPermissions);
+      // if (resultPermissions.permissions.location.status === "granted") {
+      //   console.log("ACCESO CONCEDIDO");
+      // } else {
+      //   throw new Error("Location permission not granted");
+      // }
+      // console.log("FINALIZA FUNCIN");
     })();
   }, []);
 
