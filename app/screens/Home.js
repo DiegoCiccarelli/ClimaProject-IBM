@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontWeight:"700",
-    fontSize: 30,
+    fontSize: 26,
     marginBottom: 10,
     textAlign: "center",
   },
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   description: {
     fontWeight: "500",
     textAlign: "center",
-    fontSize: 19,
+    fontSize: 17,
     marginTop: 20,
     marginBottom: 20,
     marginLeft: 20,
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
 
   subTitle: {
-    fontSize: 27,
+    fontSize: 24,
     fontWeight: "700",
     textAlign: "center",
     marginTop: 20,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontWeight: "700",
     textAlign: "center",
-    fontSize: 19,
+    fontSize: 17,
   },
 
   line: {
@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize:10,
     textAlign:"center",
-
     marginBottom: 10,
 
   },
