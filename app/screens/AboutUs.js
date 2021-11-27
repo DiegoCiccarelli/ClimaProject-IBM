@@ -1,60 +1,116 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, Text, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Image, ImageBackground, Linking} from "react-native";
 import { Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
+
 export default function AboutUs() {
   const navigation = useNavigation();
-  
+
   return (
     <ScrollView centerContent={true} style={styles.viewBody}>
+      <ImageBackground 
+      source={require("../../../ClimaProject-IBM/assets/img/background-02.png")}
+      resizeMode="cover"
+      style={styles.imageBack}
+      > 
       
-      <Text style={styles.title}>Sobre nosotros...</Text>
-      <Text style={styles.description}> Somos Diego, Fernando, María e Irina, estudiantes de Programación y creadores de CLIMAYA</Text>
-
-      
-      <Image
-          source={require("../../../ClimaProject-IBM/assets/img/linea-02.png")}
-          resizeMode="contain"
-          style={styles.line}
-      />
-      <Text style={styles.subTitle}>Herramientas UX</Text>
-      <Text style={styles.description}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+      <Text style={styles.title}>Sobre nosotros</Text>
+      <Text style={styles.subtitle}> CLIMAYA nace de la idea de crear una app amigable que sea útil para la vida diaria, brindando la información del clima necesaria para el día a día de cualquier persona. </Text>
+      <View style={styles.weareContainer}>
+        <Text style={styles.weare}>Somos Diego, Fernando, María e Irina, programadores y creadores de la app.</Text>
+        </View>
+      <Text style={styles.title}>Herramientas UX</Text>
+      <Text style={styles.description}> Listado de herramientas UX utilizadas:</Text>
       <View style={styles.viewBtn}>
         <Button
         buttonStyle={styles.btnStyle}
         containerStyle={styles.btnContainter}
-        title="HOME"
-        onPress={() => navigation.navigate("Home")}
+        title="Maquetación app"
+        onPress={() => Linking.openURL("https://excalidraw.com/#room=6e9d8ccec87db801408d,-2oTEMy8ALAZhIw51Y9SOw")}
+        />
+      
+        <Button
+        buttonStyle={styles.btnStyle}
+        containerStyle={styles.btnContainter}
+        title="Prototipado diseño"
+        onPress={() => Linking.openURL("https://app.moqups.com/05yL8fRWiEKHUHwqtFazFlmzoAZ2IVST/view/page/ae8fe8eb0")}
+        />
+      
+        <Button
+        buttonStyle={styles.btnStyle}
+        containerStyle={styles.btnContainter}
+        title="GitHub"
+        onPress={() => Linking.openURL("https://github.com/DiegoCiccarelli/ClimaProject-IBM")}
         />
       </View>
-      <Image
-          source={require("../../../ClimaProject-IBM/assets/img/logo-01.jpg")}
-          resizeMode="contain"
-          style={styles.footerImg}
-      />
-      <Text style={styles.footerText}> ClimaYA © Todos los derechos reservados </Text>
+      
+
+     
+      </ImageBackground>
     </ScrollView>
+    
   );
 }
 
 const styles = StyleSheet.create({
   viewBody: {
-    backgroundColor: "#ffffff",
-    
+    flex: 1,
   },
 
+  imageBack: {
+    flex: 1,
+    justifyContent: "center",
+    width: "100%",
+    height: 750,
+  },
+
+  
   title: {
+    color: "#f2f2f2",
     fontWeight:"700",
-    fontSize: 24,
+    fontSize: 26,
+    marginTop: 30,
     marginBottom: 10,
-    marginTop: 40,
     textAlign: "center",
   },
 
-  description: {
-    fontWeight: "500",
+  subtitle: {
+    color: "#f2f2f2",
+    fontWeight: "700",
     textAlign: "center",
+    fontSize: 19,
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  
+  description: {
+    color: "#f2f2f2",
+    fontWeight: "400",
+    textAlign: "center",
+    fontSize: 17,
+    marginTop: 0,
+    marginBottom: 20,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+
+  weareContainer: {
+    
+    borderStyle: "solid",
+    borderColor:"#f2f2f2",
+    borderWidth: 1.5,
+    borderRadius: 20,
+    margin: 20,
+  },
+
+  weare: {
+    color: "#f2f2f2",
+    fontWeight: "300",
+    textAlign: "center",
+    opacity: 10,
     fontSize: 17,
     marginTop: 20,
     marginBottom: 20,
@@ -62,53 +118,25 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
 
+
   viewBtn: {
-    flex: 1,
-    alignItems: "center",
-  },
+    flex: 3,
+    alignItems:"center",
+
+    },
 
   btnStyle: {
-    backgroundColor: "#016278",
-    margin: 20,
+    
+    backgroundColor: "#999999",
+    marginBottom: 10,
+    marginTop: 10,
   },
 
   btnContainter: {
-    width: "70%",
+    width: "50%",
   },
 
-  subTitle: {
-    fontSize: 24,
-    fontWeight: "700",
-    textAlign: "center",
-    marginTop: 20,
-  },
 
-  subDescription: {
-    marginTop: 0,
-    marginBottom: 30,
-    fontWeight: "700",
-    textAlign: "center",
-    fontSize: 19,
-  },
 
-  line: {
-    height: 60,
-    width: "80%",
-    alignSelf:"center"
-  },
-
-  footerImg: {
-    height: 60,
-    width:"100%",
-    alignSelf: "center",
-    marginTop: 20,
-  },
-
-  footerText: {
-    fontSize:10,
-    textAlign:"center",
-    marginBottom: 10,
-
-  },
 
 });
