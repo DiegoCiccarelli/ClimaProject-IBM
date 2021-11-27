@@ -1,5 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { StyleSheet } from "react-native";
 
 import Home from "../screens/Home";
 import AboutUs from "../screens/AboutUs";
@@ -9,12 +10,12 @@ const Stack = createStackNavigator();
 
 export default function HomeStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator style={styles.stacks}>
 
-      <Stack.Screen
+      <Stack.Screen 
         name="restaurants"
         component={Home}
-        options={{ title: "Home Stack" }}
+        options={{ title: "Home" }}
       />
 
       <Stack.Screen
@@ -32,3 +33,10 @@ export default function HomeStack() {
     </Stack.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  stacks: {
+    backgroundColor: "#4d4d4d",
+  },
+})
+
