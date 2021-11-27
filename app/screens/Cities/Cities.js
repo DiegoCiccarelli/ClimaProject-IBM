@@ -1,12 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Icon } from "react-native-elements";
+import CityList from "../../components/Cities/CityList";
 
 export default function Cities(props) {
   const { navigation } = props;
   return (
     <View style={styles.viewBody}>
-      <Text>Ciudades...</Text>
+      <CityList></CityList>
       <Icon
         reverse
         type="material-community"

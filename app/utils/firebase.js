@@ -1,13 +1,25 @@
-import firebase from "firebase/app";
+import firebase from "firebase";
+import "firebase/firestore";
+
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC0DodyFAfoukkz5X8ItxM8vYKYcb15_cA",
-  authDomain: "tenedores-dfdd9.firebaseapp.com",
-  projectId: "tenedores-dfdd9",
-  storageBucket: "tenedores-dfdd9.appspot.com",
-  messagingSenderId: "1028522935196",
-  appId: "1:1028522935196:web:cb8f4100a3f9122f25fe59",
+  apiKey: "AIzaSyD8QWwDtBDTI1OJU4-n3W4xrTQfFtNaWGI",
+  authDomain: "climaproject-ibm.firebaseapp.com",
+  projectId: "climaproject-ibm",
+  storageBucket: "climaproject-ibm.appspot.com",
+  messagingSenderId: "909183259854",
+  appId: "1:909183259854:web:793550faacdc1b69f66c9f"
 };
 
 // Initialize Firebase
-export const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+export default {
+  firebase,
+  db
+
+
+};

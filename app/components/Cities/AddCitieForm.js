@@ -13,6 +13,8 @@ import * as Location from "expo-location";
 import MapView from "react-native-maps";
 import Modal from "../Modal";
 
+import firebase from "../../utils/firebase";
+
 export default function AddCitieForm(props) {
   const { toastRef, setIsLoading, navigation } = props;
 
@@ -21,16 +23,24 @@ export default function AddCitieForm(props) {
   const [isVisibleMap, setIsVisibleMap] = useState(false);
   const [locationCity, setLocationCity] = useState(null);
 
-  const addCity = () => {
+  const addCity = async () => {
     if (!cityName || !cityAddress) {
       toastRef.current.show("Todos los campos del formulario son obligatorios");
     } else if (!locationCity) {
       toastRef.current.show("Tienes que localizar la ubicacion en el mapa");
     } else {
-      console.log("ok");
-      console.log("cityName: " + cityName);
-      console.log("cityAddress: " + cityAddress);
-      console.log(locationCity);
+
+      await firebase.db.collection('cities').add({
+        name: cityName,
+        adress: cityAddress,
+        location: locationCity
+      })
+      props.navigation.navigate("cities");
+
+      // console.log("ok");
+      // console.log("cityName: " + cityName);
+      // console.log("cityAddress: " + cityAddress);
+      // console.log(locationCity);
     }
   };
 
