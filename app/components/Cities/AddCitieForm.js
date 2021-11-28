@@ -14,6 +14,7 @@ import MapView from "react-native-maps";
 import Modal from "../Modal";
 
 import firebase from "../../utils/firebase";
+import { color } from "react-native-reanimated";
 
 export default function AddCitieForm(props) {
   const { toastRef, setIsLoading, navigation } = props;
@@ -163,15 +164,18 @@ function Map(props) {
 const styles = StyleSheet.create({
   scrollView: {
     height: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: "#f2f2f2",
   },
   viewForm: {
     marginLeft: 10,
     marginRight: 10,
-    marginTop: 20,
+    marginTop: 40,
+    
   },
   input: {
+    color: "#f2f2f2",
     marginBottom: 10,
+    
   },
   btnAddCity: {
     backgroundColor: "#016278",
