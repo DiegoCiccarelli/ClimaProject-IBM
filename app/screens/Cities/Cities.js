@@ -1,33 +1,53 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ImageBackground, ScrollView } from "react-native";
 import { Icon } from "react-native-elements";
 import CityList from "../../components/Cities/CityList";
 
 export default function Cities(props) {
   const { navigation } = props;
   return (
-    <View style={styles.viewBody}>
-      <CityList navigation={navigation} ></CityList>
+    <ScrollView centerContent={true} style={styles.viewBody}>
+      <ImageBackground 
+      source={require("../../../assets/img/background-02.png")}
+      resizeMode="contain"
+      style={styles.imageBack}
+      > 
+     
+
+      <CityList navigation={navigation}></CityList>
+
+     
+      
       <Icon
         reverse
         type="material-community"
         name="plus"
-        color="#016278"
+        color="#4d4d4d"
         containerStyle={styles.btnContainer}
         onPress={() => navigation.navigate("add-citie")}
       />
-    </View>
+      </ImageBackground>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   viewBody: {
     flex: 1,
-    backgroundColor: "#fff",
+    alignContent:"center",
   },
+  imageBack: {
+    flex: 1,
+    justifyContent: "center",
+    width: "100%",
+    height: 640,
+  },
+
+  
+
   btnContainer: {
     position: "absolute",
-    bottom: 10,
+    bottom: 20,
     right: 10,
     shadowColor: "black",
     shadowOffset: { width: 2, height: 2 },
