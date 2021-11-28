@@ -7,7 +7,7 @@ export default function Cities(props) {
   const { navigation } = props;
   return (
     <View style={styles.viewBody}>
-      <CityList></CityList>
+      <CityList navigation={navigation} ></CityList>
       <Icon
         reverse
         type="material-community"

@@ -37,10 +37,6 @@ export default function AddCitieForm(props) {
       })
       props.navigation.navigate("cities");
 
-      // console.log("ok");
-      // console.log("cityName: " + cityName);
-      // console.log("cityAddress: " + cityAddress);
-      // console.log(locationCity);
     }
   };
 
