@@ -15,7 +15,9 @@ const ApiClima = (props)=>{
     const [urlImage, setUrlImage] = useState("http://openweathermap.org/img/w/10d.png")
 
     useEffect(() => {
-        fetch("https://api.openweathermap.org/data/2.5/weather?lat=-31.366009433307944&lon=-64.2157113365829&appid=21b02c683d4913950448a67fc7ff5f79&units=metric&lang=es")
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric&lang=es`)
+        //console.log("latitud: " + lat + " long " + long + " api " + apiKey)
+        //fetch("https://api.openweathermap.org/data/2.5/weather?lat=-31.366009433307944&lon=-64.2157113365829&appid=21b02c683d4913950448a67fc7ff5f79&units=metric&lang=es")
         .then(response => response.json())
         .then(json => {
             setClima(json.main);
