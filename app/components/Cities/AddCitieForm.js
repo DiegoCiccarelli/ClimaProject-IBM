@@ -28,16 +28,17 @@ export default function AddCitieForm(props) {
     if (!cityName || !cityAddress) {
       toastRef.current.show("Todos los campos del formulario son obligatorios");
     } else if (!locationCity) {
-      toastRef.current.show("Tienes que localizar la ubicacion en el mapa");
+      toastRef.current.show("Su ubicacion en el mapa fue guardada");
     } else {
-
-      await firebase.db.collection('cities').add({
+      await firebase.db.collection("cities").add({
         name: cityName,
         adress: cityAddress,
-        location: locationCity
-      })
-      props.navigation.navigate("cities");
+        location: locationCity,
+      });
 
+      await toastRef.current.show("Ciudad AGREGADA correctamente");
+
+      props.navigation.navigate("cities");
     }
   };
 
@@ -98,7 +99,6 @@ function Map(props) {
       const resultPermissions = await Permissions.askAsync(
         Permissions.LOCATION
       );
-      console.log(resultPermissions);
       const statusPermissions = resultPermissions.status;
       if (statusPermissions === "granted") {
         const loc = await Location.getCurrentPositionAsync({});
@@ -170,12 +170,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginTop: 40,
-    
   },
   input: {
     color: "#f2f2f2",
     marginBottom: 10,
-    
   },
   btnAddCity: {
     backgroundColor: "#016278",
